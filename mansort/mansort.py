@@ -2,7 +2,9 @@ import pyperclip
 import curses
 from curses import wrapper
 
-items = pyperclip.paste().splitlines()
+items = pyperclip.paste().strip().splitlines()
+items = [item.strip() for item in items]
+
 
 lines = len(items)
 

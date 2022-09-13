@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="ManualSorter",
-    version='0.1.1',
+    version='0.1.2',
     description='Basic TUI tool to reorder a list on the clipboard',
     url='https://github.com/TeddyWoodburn/ManualSorter',
     author='Teddy Woodburn',
