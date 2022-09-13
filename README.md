@@ -4,8 +4,6 @@ A TUI application that reads lines from the clipboard, allows them to be manuall
 # Installation
 Install with pip: ```pip install ManualSorter```
 
-Start Python: ```python```
-
 # How to use
 First, copy the text that you would like to reorder, for this example try copying the following list:
 - Bananas
