@@ -1,6 +1,11 @@
 # ManualSorter
 A TUI application that reads lines from the clipboard, allows them to be manually reordered and then updates the clipboard.
 
+# Installation
+Install with pip: ```pip install ManualSorter```
+
+Start Python: ```python```
+
 # How to use
 First, copy the text that you would like to reorder, for this example try copying the following list:
 - Bananas
@@ -8,7 +13,9 @@ First, copy the text that you would like to reorder, for this example try copyin
 - Pears
 - Strawberries
 
-Next, run the mansort.py script.
+Next, start Python: ```python```
+
+And run the script: ```from mansort import mansort```
 
 You will see at the top of the screen that the mode is set to READ and the first item of the list is selected. READ mode allows you to change which item is selected. Use either of the following key pairs to move the selection up/down: K/J or up/down arrow.
 
