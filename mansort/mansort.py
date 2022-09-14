@@ -7,14 +7,7 @@ items = [item.strip() for item in items]
 
 
 lines = len(items)
-
-if lines < 10:
-    lineNoWidth = 1
-elif lines < 100:
-    lineNoWidth = 2
-else:
-    lineNoWidth = 3
-
+lineNoWidth = len(str(lines))
 padding = lineNoWidth + 2
 
 down = {456, 258, 106} # VSCode down arrow, down arrow, J
@@ -30,33 +23,24 @@ def main(stdscr):
     curses.curs_set(0) # Hide cursor
 
     # Print top line
-    stdscr.addstr(0, 0, "MODE:")
+    stdscr.addstr(0, 0, "MODE:            MOVE (F/L)")
     stdscr.addstr(0, 6, "READ (D/H)", curses.A_STANDOUT)
-    stdscr.addstr(0, 17, "MOVE (F/L)")
     mode = "read"
 
     # Print bottom line
     stdscr.addstr(lines + 1, 0, "Q TO QUIT")
 
-    # Print line numbers
-    for lineNo in range(1, lines+1):
-        stdscr.addstr(lineNo, 0, f'{lineNo:>{lineNoWidth}d}.')
-    
+    maxAllowedLen = curses.COLS - padding
     # Print items
-    maxItemLen = 0
-    for item, lineNo in zip(items, range(1, lines+1)):
-            if len(item) > maxItemLen:
-                maxItemLen = len(item)
-            
-            if lineNo == 1:
-                stdscr.addstr(1, padding, item, curses.A_STANDOUT)
-            else:
-                stdscr.addstr(lineNo, padding, item)
+    # Print first item
+    stdscr.addstr(1, 0, f"{1:>{lineNoWidth}d}.")
+    stdscr.addstr(1, padding, items[0][:maxAllowedLen], curses.A_STANDOUT)
 
-    clearLine = " " * maxItemLen # This will be used later to clear items
+    # Print remaining items
+    for item, lineNo in zip(items, range(2, lines+1)):
+                stdscr.addstr(lineNo, 0, f"{lineNo:>{lineNoWidth}d}. {item[:maxAllowedLen]}")
 
-    if padding + maxItemLen > curses.COLS:
-        raise(ValueError(f"Window must be at least {padding + maxItemLen} characters wide"))
+    clearLine = " " * maxAllowedLen # This will be used later to clear items
 
     selectedLine = 1
     key = 0
@@ -93,11 +77,11 @@ def main(stdscr):
 
         # Update and unhighlight the previous line
         stdscr.addstr(prevSelectedLine, padding, clearLine)
-        stdscr.addstr(prevSelectedLine, padding, items[prevSelectedLine - 1])
+        stdscr.addstr(prevSelectedLine, padding, items[prevSelectedLine - 1][:maxAllowedLen])
 
         # Update and highlight new line
         stdscr.addstr(selectedLine, padding, clearLine)
-        stdscr.addstr(selectedLine, padding, items[selectedLine - 1], curses.A_STANDOUT)
+        stdscr.addstr(selectedLine, padding, items[selectedLine - 1][:maxAllowedLen], curses.A_STANDOUT)
   
 wrapper(main)
 
