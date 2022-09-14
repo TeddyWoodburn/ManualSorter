@@ -6,7 +6,7 @@ Install pypercplip: ```pip install pyperclip```
 
 If using windows, install curses: ```pip install windows-curses```
 
-Download [mansort.py]{https://raw.githubusercontent.com/TeddyWoodburn/ManualSorter/master/mansort/mansort.py} (right-click and select save as).
+Download [mansort.py](https://raw.githubusercontent.com/TeddyWoodburn/ManualSorter/master/mansort/mansort.py) (right-click and select save as).
 
 # How to use
 First, copy the text that you would like to reorder, for this example try copying the following list:
